@@ -22,7 +22,7 @@ Pri implementácii *packet snifferu* som sa snažil byť čo najprívetivejší 
 ## Spustenie
 1) Naklonujte si tento repozitár, poprípade extrahujte súbor:
 ```
-git clone https://git.fit.vutbr.cz/xstrig00/ipk-project_2.git 
+git clone https://github.com/astrigac/Packet-sniffer.git
 ```
 2) Preložte súbor:    
 ```
@@ -30,7 +30,7 @@ make
 ```
 3) Spustite program:
 ```
-./ipk-sniffer -h [-i interface | --interface interface] {-p port [--tcp|-t] [--udp|-u]} [--arp] [--icmp4] [--icmp6] [--igmp] [--mld] {-n num}
+./sniffer -h [-i interface | --interface interface] {-p port [--tcp|-t] [--udp|-u]} [--arp] [--icmp4] [--icmp6] [--igmp] [--mld] {-n num}
 ``` 
 &nbsp;&nbsp;&nbsp;&nbsp; kde:
 
@@ -74,7 +74,7 @@ Testy boli vykonané aby sa zabránilo užívateľovi spustenie programu s nepla
 ##### Neplatný argument
 - Spustenie: 
 ```
-sudo ./ipk-sniffer -i enp0s3 --icmp
+sudo ./sniffer -i enp0s3 --icmp
 ```
 - Očakávaný výstup:
 ``` 
@@ -83,12 +83,12 @@ sudo ./ipk-sniffer -i enp0s3 --icmp
 - Skutočný výstup:
 ``` 
 Wrong function arguments
-For more info, use ./ipk-sniffer -h
+For more info, use ./sniffer -h
 ```
 ##### Neexistujúce rozhranie
 - Spustenie:
 ``` 
-sudo ./ipk-sniffer -i enp0s
+sudo ./sniffer -i enp0s
 ```
 - Očakávaný výstup:
 ``` 
@@ -97,12 +97,12 @@ sudo ./ipk-sniffer -i enp0s
 - Skutočný výstup:
 ``` 
 Interface does not exist
-For more info, use ./ipk-sniffer -h
+For more info, use ./sniffer -h
 ```
 ##### Negatívny počet paketov
 - Spustenie:
 ``` 
-sudo ./ipk-sniffer -i enp0s3 --tcp -n -3
+sudo ./sniffer -i enp0s3 --tcp -n -3
 ```
 - Očakávaný výstup:
 ``` 
@@ -111,14 +111,14 @@ sudo ./ipk-sniffer -i enp0s3 --tcp -n -3
 - Skutočný výstup: 
 ```
 Digit argument in wrong format
-For more info, use ./ipk-sniffer -h
+For more info, use ./sniffer -h
 ```
 #### Výpis aktívnych rozhraní
 Testy boli vykonané pre kontrolu správnej funkčnosti tejto funkcionality. Táto funkcionalita je veľmi potrebná pretože uľahčuje užívateľovi prístup ku zoznamu zariadení ktoré môže sledovať. 
 ##### Spustenie programu bez argumentov
 - Spustenie:
 ``` 
-sudo ./ipk-sniffer
+sudo ./sniffer
 ```
 - Očakávaný výstup:
 ``` 
@@ -136,7 +136,7 @@ lo
 ##### Spustenie programu iba s argumentom --interface
 - Spustenie:
 ``` 
-sudo ./ipk-sniffer --interface
+sudo ./sniffer --interface
 ```
 - Očakávaný výstup:
 ``` 
@@ -155,7 +155,7 @@ lo
 Test bol vykonaný z dôvodu kontroly že filter ktorý program vytvorí je správny, preložiteľný a užitočný.
 - Spustenie:
 ``` 
-sudo ./ipk-sniffer -i enp0s3 -p 35
+sudo ./sniffer -i enp0s3 -p 35
 ```
 - Očakávaný výstup:
 ``` 
@@ -175,7 +175,7 @@ Testy boli vykonané pre kontrolu že program skutočne funguje a že jeho výst
 ##### Použitie filtru --tcp na rozhraní enp0s3
 - Spustenie:
 ``` 
-sudo ./ipk-sniffer -i enp0s3 --tcp
+sudo ./sniffer -i enp0s3 --tcp
 ```
 - Referenčný paket v aplikácií Wireshark: ![tcp1](https://user-images.githubusercontent.com/101597718/232592497-7f9ff96a-40cb-4fd4-bbf7-01668d0bbefa.png)
 ![tcp2](https://user-images.githubusercontent.com/101597718/232592579-2345c40c-137d-463b-b367-fac2ea8e8c79.png)
@@ -201,7 +201,7 @@ dst port: 443
 ##### Použitie filtru --arp na rozhraní enp0s3
 - Spustenie:
 ``` 
-sudo ./ipk-sniffer -i enp0s3 --arp
+sudo ./sniffer -i enp0s3 --arp
 ```
 - Referenčný paket v aplikácií Wireshark: ![arp1](https://user-images.githubusercontent.com/101597718/232592684-fc3764fa-1272-487f-890f-c008cfab7bbc.png)
 ![arp2](https://user-images.githubusercontent.com/101597718/232592740-ecb8b2ca-7777-46b1-b2fa-1906787b3262.png)
@@ -235,8 +235,6 @@ dst IP: 10.0.2.2
 <br />
 <br />
 <br />
-
-Autor:&nbsp;&nbsp;Aurel Strigáč <<xstrig00@vutbr.cz>>
 
 
  
